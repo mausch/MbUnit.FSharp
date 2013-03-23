@@ -5,12 +5,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>543952c0-e3dd-48c9-afc6-12462ae48d2d</ProjectGuid>
+    <ProjectGuid>113fc636-2e24-4477-b2e2-0febeed9d82d</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MbUnit.FSharp</RootNamespace>
-    <AssemblyName>MbUnit.FSharp</AssemblyName>
+    <RootNamespace>MbUnit.FSharp.Sample</RootNamespace>
+    <AssemblyName>MbUnit.FSharp.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <Name>MbUnit.FSharp</Name>
+    <Name>MbUnit.FSharp.Sample</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +20,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\MbUnit.FSharp.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\MbUnit.FSharp.Sample.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,16 +29,8 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\MbUnit.FSharp.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\MbUnit.FSharp.Sample.XML</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
-  <ItemGroup>
-    <Compile Include="Wrappers.fs" />
-    <None Include="packages.config" />
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="Gallio">
       <HintPath>..\packages\Gallio_MbUnit.3.4.14.0\lib\net40\Gallio.dll</HintPath>
@@ -60,6 +52,20 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tests.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MbUnit.FSharp\MbUnit.FSharp.fsproj">
+      <Name>MbUnit.FSharp</Name>
+      <Project>{543952c0-e3dd-48c9-afc6-12462ae48d2d}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

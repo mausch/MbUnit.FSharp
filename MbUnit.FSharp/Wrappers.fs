@@ -14,6 +14,3 @@ let testFixture setup =
     Seq.map (fun (name, partialTest) ->
                 testCase name (setup partialTest))
 
-let testParam param =
-    Seq.map (fun (name, partialTest) ->
-                testCase name (partialTest param))
