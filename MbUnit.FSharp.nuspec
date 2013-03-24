@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MbUnit.FSharp</id>
+    <version>1.0</version>
+    <title>MbUnit.FSharp</title>
+    <authors>Mauricio Scheffer</authors>
+    <owners>mausch</owners>
+    <licenseUrl>https://raw.github.com/mausch/MbUnit.FSharp/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/mausch/MbUnit.FSharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>F# DSL for first-class MbUnit tests</description>
+    <copyright>Copyright Mauricio Scheffer 2013</copyright>
+    <tags>fsharp unit test testing mbunit</tags>
+    <dependencies>
+      <dependency id="Gallio_MbUnit" version="3.4.14.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="MbUnit.FSharp\bin\Release\MbUnit.FSharp.*" target="lib\net40"/>
+  </files>
+</package>
