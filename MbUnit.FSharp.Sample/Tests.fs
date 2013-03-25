@@ -8,8 +8,12 @@ let testFactory() =
     [
         testList "a sample test" [
             testList "you can nest test lists as much as you want" [
-                testCase "hello world" <|
-                    fun _ -> Assert.AreEqual(4, 2+2)
+                testCase "hello world" <| fun _ -> 
+                    Assert.AreEqual(4, 2+2)
+
+                test "another, equivalent way" {
+                    Assert.AreEqual(4, 2+2)
+                }
             ]
         ]
 
@@ -20,8 +24,9 @@ let testFactory() =
             ]
 
             for a,b,r in data ->
-                testCase (sprintf "%M / %M = %M" a b r) <| fun _ ->
+                test (sprintf "%M / %M = %M" a b r) {
                     Assert.AreEqual(r, a / b)
+                }
         ]
 
         testList "setup/teardown (a simple higher-order function)" [
@@ -45,8 +50,11 @@ let testFactory() =
             yield testCase "add stuff" <| fun _ ->
                 sb.Value.Append "hello" |> ignore
 
-            yield testCase "check" <| fun _ ->
-                Assert.AreEqual("hello", sb.Value.ToString())
+            yield test "add more stuff" {
+                sb.Value.Append " world" |> ignore
+            }
 
+            yield testCase "check" <| fun _ ->
+                Assert.AreEqual("hello world", sb.Value.ToString())
         ]
     ]

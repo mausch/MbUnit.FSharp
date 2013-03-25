@@ -14,3 +14,9 @@ let testFixture setup =
     Seq.map (fun (name, partialTest) ->
                 testCase name (setup partialTest))
 
+type TestCaseBuilder(name: string) = 
+    member x.Zero() = ()
+    member x.Delay f = f
+    member x.Run f = testCase name f
+
+let inline test name = TestCaseBuilder name
