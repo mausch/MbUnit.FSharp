@@ -58,3 +58,8 @@ let testFactory() =
                 Assert.AreEqual("hello world", sb.Value.ToString())
         ]
     ]
+
+// this will only work with a custom build of Gallio
+// see https://github.com/mausch/MbUnit.FSharp/issues/1 for details
+let r = run (testFactory())
+printfn "%A" r

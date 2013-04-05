@@ -40,3 +40,28 @@ type TestCaseBuilder(name) =
     member x.Run f = testCase name f
 
 let inline test name = TestCaseBuilder name
+
+open Gallio.Model
+open Gallio.Common.Reflection
+open Gallio.Model.Contexts
+
+/// Run tests.
+/// This will only work with a custom build of Gallio.
+/// See https://github.com/mausch/MbUnit.FSharp/issues/1 for details
+let run tests = 
+    let codeElemInfo = 
+        { new ICodeElementInfo with
+            member x.Name = "F# test" 
+            member x.Kind = CodeElementKind.Method
+            member x.CodeReference = CodeReference.Unknown
+            member x.GetAttributeInfos(attributeType, inheritt) = Seq.empty
+            member x.HasAttribute(attributeType, inheritt) = false
+            member x.GetAttributes(attributeType, inheritt) = Seq.empty
+            member x.GetXmlDocumentation() = ""
+            member x.GetCodeLocation() = CodeLocation.Unknown
+            member x.ReflectionPolicy = null
+            member x.Equals y = true }
+
+    let noAction = Gallio.Common.Action ignore
+
+    Test.RunDynamicTests(tests, codeElemInfo, noAction, noAction)
