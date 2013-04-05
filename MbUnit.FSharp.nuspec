@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MbUnit.FSharp</id>
-    <version>1.0</version>
+    <version>1.1</version>
     <title>MbUnit.FSharp</title>
     <authors>Mauricio Scheffer</authors>
     <owners>mausch</owners>
