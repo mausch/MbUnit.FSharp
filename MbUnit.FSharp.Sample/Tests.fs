@@ -57,6 +57,16 @@ let testFactory() =
             yield testCase "check" <| fun _ ->
                 Assert.AreEqual("hello world", sb.Value.ToString())
         ]
+
+        testList "other" [
+            test "skipping/ignoring test" {
+                skiptestf "Skipping this test because %s" "reasons"
+            }
+
+            test "fail test" {
+                failtestf "this test failed because %s" "it's wrong"
+            }
+        ]
     ]
 
 // this will only work with a custom build of Gallio

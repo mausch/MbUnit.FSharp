@@ -2,6 +2,9 @@
 
 open System
 open MbUnit.Framework
+open Gallio.Model
+open Gallio.Common.Reflection
+open Gallio.Model.Contexts
 
 let testList name tests = 
     let suite = TestSuite name
@@ -14,6 +17,14 @@ let testCase name (test: unit -> unit) =
 let testFixture setup = 
     Seq.map (fun (name, partialTest) ->
                 testCase name (setup partialTest))
+
+let inline skiptest msg = Assert.TerminateSilently(TestOutcome.Ignored, msg)
+
+let inline skiptestf fmt = Printf.ksprintf skiptest fmt
+
+let inline failtest msg = Assert.Fail(msg)
+
+let inline failtestf fmt = Printf.ksprintf failtest fmt
 
 type TestCaseBuilder(name) = 
     member x.TryFinally(f, compensation) = 
@@ -40,10 +51,6 @@ type TestCaseBuilder(name) =
     member x.Run f = testCase name f
 
 let inline test name = TestCaseBuilder name
-
-open Gallio.Model
-open Gallio.Common.Reflection
-open Gallio.Model.Contexts
 
 /// Run tests.
 /// This will only work with a custom build of Gallio.
